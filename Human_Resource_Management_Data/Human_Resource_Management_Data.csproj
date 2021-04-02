@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="MongoDB.Bson" Version="2.12.1" />
+    <PackageReference Include="MongoDB.Driver" Version="2.12.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Human_Resource_Management_Model\Human_Resource_Management_Model.csproj" />
+  </ItemGroup>
+
+</Project>
