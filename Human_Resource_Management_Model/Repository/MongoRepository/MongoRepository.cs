@@ -8,16 +8,16 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Human_Resource_Management_Data.MongoRepository
+namespace Human_Resource_Management_Model.Repository.MongoRepository
 {
     public class MongoRepository<TDocument> : IMongoRepository<TDocument>
     where TDocument : IDocument
     {
         private readonly IMongoCollection<TDocument> _collection;
 
-        public MongoRepository(IMongoDbSettings settings)
-        {
-            var database = new MongoClient(settings.ConnectionString).GetDatabase(settings.DatabaseName);
+        public MongoRepository()
+        {          
+            IMongoDatabase database = new MongoClient("mongodb://adminHR:anhlavu123@localhost:27017/?serverSelectionTimeoutMS=5000&connectTimeoutMS=10000&authSource=HumanResources&authMechanism=SCRAM-SHA-256&3t.uriVersion=3&3t.connection.name=adminHR&3t.alwaysShowAuthDB=true&3t.alwaysShowDBFromUserRole=true").GetDatabase("HumanResources");
             _collection = database.GetCollection<TDocument>(GetCollectionName(typeof(TDocument)));
         }
 
@@ -33,7 +33,7 @@ namespace Human_Resource_Management_Data.MongoRepository
         {
             return _collection.AsQueryable();
         }
-
+        
         public virtual IEnumerable<TDocument> FilterBy(
             Expression<Func<TDocument, bool>> filterExpression)
         {
