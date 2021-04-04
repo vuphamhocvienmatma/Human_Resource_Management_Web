@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Human_Resource_Management_Model.MongoClass;
+using System;
 using System.ComponentModel.DataAnnotations;
-using Human_Resource_Management_Model.MongoClass;
-using MongoDB.Bson.Serialization.Attributes;
-
 
 namespace Human_Resource_Management_Model.HRM
 {
     [BsonCollection("HR_Employee")]
     public class HR_Account : MongoDocument
-    {      
+    {
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Tên không được để trống!")]
@@ -33,7 +30,7 @@ namespace Human_Resource_Management_Model.HRM
         public string Mobile1 { get; set; }
 
         public string Mobile2 { get; set; }
-      
+
         public string AccountStatus { get; set; }
 
         public bool isAdmin { get; set; } //là quyền root hệ thống

@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Human_Resource_Management_Model.Repository.MongoRepository
@@ -19,9 +18,9 @@ namespace Human_Resource_Management_Model.Repository.MongoRepository
         IEnumerable<TProjected> FilterBy<TProjected>(
             Expression<Func<TDocument, bool>> filterExpression,
             Expression<Func<TDocument, TProjected>> projectionExpression);
-     
+
         Task<TDocument> FindOneAsync(Expression<Func<TDocument, bool>> filterExpression);
-      
+
         Task<TDocument> FindByIdAsync(string id);
 
         Task<MessageReport> InsertOneAsync(TDocument document);
@@ -35,6 +34,5 @@ namespace Human_Resource_Management_Model.Repository.MongoRepository
         Task<MessageReport> DeleteByIdAsync(string id);
 
         Task<MessageReport> DeleteManyAsync(Expression<Func<TDocument, bool>> filterExpression);
-     
     }
 }

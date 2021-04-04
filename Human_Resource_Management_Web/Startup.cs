@@ -11,11 +11,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Serialization;
-using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Human_Resource_Management_Web
 {
@@ -42,7 +40,6 @@ namespace Human_Resource_Management_Web
                 options.MaximumBodySize = 1024;
                 options.UseCaseSensitivePaths = true;
             });
-            
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
@@ -52,7 +49,6 @@ namespace Human_Resource_Management_Web
             {
                 // Use the default property (Pascal) casing
                 options.SerializerSettings.ContractResolver = new DefaultContractResolver();
-
             });
             services.AddResponseCompression();
 
@@ -62,14 +58,14 @@ namespace Human_Resource_Management_Web
 
             services.AddSignalR();
         }
+
         public void ConfigureContainer(ContainerBuilder builder)
         {
             builder.RegisterAssemblyTypes(typeof(HR_AccountRepository).Assembly)
                     .Where(t => t.Name.EndsWith("Repository"))
                     .AsImplementedInterfaces().InstancePerLifetimeScope();
-
-           
         }
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -94,7 +90,6 @@ namespace Human_Resource_Management_Web
             app.UseRouting();
 
             app.UseResponseCaching();
-
 
             app.UseResponseCompression();
 

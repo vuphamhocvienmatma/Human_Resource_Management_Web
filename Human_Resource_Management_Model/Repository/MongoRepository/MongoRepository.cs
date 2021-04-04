@@ -6,7 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Human_Resource_Management_Model.Repository.MongoRepository
@@ -32,13 +31,13 @@ namespace Human_Resource_Management_Model.Repository.MongoRepository
 
         public virtual IQueryable<TDocument> AsQueryable()
         {
-            return  _collection.AsQueryable();
+            return _collection.AsQueryable();
         }
 
-        public virtual  IEnumerable<TDocument> FilterBy(
+        public virtual IEnumerable<TDocument> FilterBy(
             Expression<Func<TDocument, bool>> filterExpression)
         {
-            return  _collection.Find(filterExpression).ToEnumerable();
+            return _collection.Find(filterExpression).ToEnumerable();
         }
 
         public virtual IEnumerable<TProjected> FilterBy<TProjected>(
@@ -47,7 +46,7 @@ namespace Human_Resource_Management_Model.Repository.MongoRepository
         {
             return _collection.Find(filterExpression).Project(projectionExpression).ToEnumerable();
         }
-    
+
         public virtual async Task<TDocument> FindOneAsync(Expression<Func<TDocument, bool>> filterExpression)
         {
             return await Task.Run(() => _collection.Find(filterExpression).FirstOrDefaultAsync());
@@ -74,9 +73,8 @@ namespace Human_Resource_Management_Model.Repository.MongoRepository
             }
             catch (Exception ex)
             {
-                result = new MessageReport(false, string.Format("Message: {0} - Details: {1}", 
+                result = new MessageReport(false, string.Format("Message: {0} - Details: {1}",
                     ex.Message, ex.InnerException != null ? ex.InnerException.Message : ""));
-                
             }
             return result;
         }
@@ -91,7 +89,6 @@ namespace Human_Resource_Management_Model.Repository.MongoRepository
             }
             catch (Exception ex)
             {
-
                 result = new MessageReport(false, string.Format("Message: {0} - Details: {1}",
                    ex.Message, ex.InnerException != null ? ex.InnerException.Message : ""));
             }
@@ -109,7 +106,6 @@ namespace Human_Resource_Management_Model.Repository.MongoRepository
             }
             catch (Exception ex)
             {
-
                 result = new MessageReport(false, string.Format("Message: {0} - Details: {1}",
                    ex.Message, ex.InnerException != null ? ex.InnerException.Message : ""));
             }
@@ -126,7 +122,6 @@ namespace Human_Resource_Management_Model.Repository.MongoRepository
             }
             catch (Exception ex)
             {
-
                 result = new MessageReport(false, string.Format("Message: {0} - Details: {1}",
                   ex.Message, ex.InnerException != null ? ex.InnerException.Message : ""));
             }
@@ -156,7 +151,7 @@ namespace Human_Resource_Management_Model.Repository.MongoRepository
             MessageReport result = new MessageReport(false, "Chưa được thực thi");
             try
             {
-                 await _collection.DeleteManyAsync(filterExpression);
+                await _collection.DeleteManyAsync(filterExpression);
                 result = new MessageReport(true, "Xóa các bản ghi thành công");
             }
             catch (Exception ex)
@@ -164,9 +159,7 @@ namespace Human_Resource_Management_Model.Repository.MongoRepository
                 result = new MessageReport(false, string.Format("Message: {0} - Details: {1}",
                   ex.Message, ex.InnerException != null ? ex.InnerException.Message : ""));
             }
-            return result;         
+            return result;
         }
-
-       
     }
 }

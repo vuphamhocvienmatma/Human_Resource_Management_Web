@@ -1,12 +1,12 @@
-﻿using System;
-using System.IO;
-using System.Text;
-using Org.BouncyCastle.Crypto;
+﻿using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Engines;
 using Org.BouncyCastle.Crypto.Generators;
 using Org.BouncyCastle.Crypto.Modes;
 using Org.BouncyCastle.Crypto.Parameters;
 using Org.BouncyCastle.Security;
+using System;
+using System.IO;
+using System.Text;
 
 namespace Human_Resource_Management_Libraly.Cryptography
 {
@@ -16,14 +16,15 @@ namespace Human_Resource_Management_Libraly.Cryptography
 
         //Preconfigured Encryption Parameters
         public static readonly int NonceBitSize = 128;
+
         public static readonly int MacBitSize = 128;
         public static readonly int KeyBitSize = 256;
 
         //Preconfigured Password Key Derivation Parameters
         public static readonly int SaltBitSize = 128;
+
         public static readonly int Iterations = 10000;
         public static readonly int MinPasswordLength = 12;
-
 
         /// <summary>
         /// Helper that generates a random new key on each call.
@@ -61,7 +62,6 @@ namespace Human_Resource_Management_Libraly.Cryptography
             var cipherText = SimpleEncrypt(plainText, key, nonSecretPayload);
             return Convert.ToBase64String(cipherText);
         }
-
 
         /// <summary>
         /// Simple Decryption & Authentication (AES-GCM) of a UTF8 Message
@@ -108,7 +108,6 @@ namespace Human_Resource_Management_Libraly.Cryptography
             return Convert.ToBase64String(cipherText);
         }
 
-
         /// <summary>
         /// Simple Decryption and Authentication (AES-GCM) of a UTF8 message
         /// using a key derived from a password (PBKDF2)
@@ -133,7 +132,6 @@ namespace Human_Resource_Management_Libraly.Cryptography
             var plainText = SimpleDecryptWithPassword(cipherText, password, nonSecretPayloadLength);
             return plainText == null ? null : Encoding.UTF8.GetString(plainText);
         }
-
 
         /// <summary>
         /// Simple Encryption And Authentication (AES-GCM) of a UTF8 string.
@@ -223,7 +221,6 @@ namespace Human_Resource_Management_Libraly.Cryptography
                 {
                     var len = cipher.ProcessBytes(cipherText, 0, cipherText.Length, plainText, 0);
                     cipher.DoFinal(plainText, len);
-
                 }
                 catch (InvalidCipherTextException)
                 {
@@ -233,7 +230,6 @@ namespace Human_Resource_Management_Libraly.Cryptography
 
                 return plainText;
             }
-
         }
 
         /// <summary>

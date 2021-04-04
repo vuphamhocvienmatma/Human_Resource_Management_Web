@@ -1,6 +1,4 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
-using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace Human_Resource_Management_Model.HRM
 {

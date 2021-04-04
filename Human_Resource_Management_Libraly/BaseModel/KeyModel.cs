@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Human_Resource_Management_Libraly.BaseModel
+﻿namespace Human_Resource_Management_Libraly.BaseModel
 {
     public static class KeyModel
     {
@@ -15,7 +9,7 @@ namespace Human_Resource_Management_Libraly.BaseModel
         public const string SessionKey = "r5u8x/A?D(G+KbPdSgVkYp3s6v9y$B&E";
 
         public const string CacheKey = "WnZr4u7x!A%D*G-KaNdRgUkXp2s5v8y/";
-    
+
         public const string WebKey = "5v8y/A?D(G+KbPeShVmYq3t6w9z$C&E)";
     }
 }

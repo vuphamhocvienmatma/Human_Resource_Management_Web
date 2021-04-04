@@ -2,11 +2,7 @@
 using Human_Resource_Management_Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Human_Resource_Management_Web.Controllers
 {

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Human_Resource_Management_Libraly.BaseModel
+﻿namespace Human_Resource_Management_Libraly.BaseModel
 {
     public class MessageReport
     {
@@ -14,7 +8,6 @@ namespace Human_Resource_Management_Libraly.BaseModel
 
         public MessageReport()
         {
-
         }
 
         public MessageReport(bool isSuccess, string Message)
