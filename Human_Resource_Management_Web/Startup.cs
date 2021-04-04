@@ -59,7 +59,7 @@ namespace Human_Resource_Management_Web
         }
         public void ConfigureContainer(ContainerBuilder builder)
         {
-            builder.RegisterAssemblyTypes(typeof(HR_EmployeeRepository).Assembly)
+            builder.RegisterAssemblyTypes(typeof(HR_AccountRepository).Assembly)
                     .Where(t => t.Name.EndsWith("Repository"))
                     .AsImplementedInterfaces().InstancePerLifetimeScope();
 

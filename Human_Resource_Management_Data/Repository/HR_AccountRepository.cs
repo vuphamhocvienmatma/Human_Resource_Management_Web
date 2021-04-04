@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 
 namespace Human_Resource_Management_Data.Repository
 {
-    public interface IHR_EmployeeRepository : IMongoRepository<HR_Employee>
+    public interface IHR_AccountRepository : IMongoRepository<HR_Account>
     {
 
     }
-   
-    public class HR_EmployeeRepository : MongoRepository<HR_Employee> ,IHR_EmployeeRepository
+
+    public class HR_AccountRepository : MongoRepository<HR_Account>, IHR_AccountRepository
     {
 
     }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Human_Resource_Management_Model.Repository.MongoRepository
 {
-    public interface IMongoRepository<TDocument> where TDocument : IDocument
+    public interface IMongoRepository<TDocument> where TDocument : IMongoDocument
     {
         IQueryable<TDocument> AsQueryable();
 

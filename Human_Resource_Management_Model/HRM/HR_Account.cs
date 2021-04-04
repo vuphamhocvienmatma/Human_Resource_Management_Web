@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Human_Resource_Management_Model.MongoClass;
 using MongoDB.Bson.Serialization.Attributes;
 
 
 namespace Human_Resource_Management_Model.HRM
 {
-    [BsonIgnoreExtraElements]
-    public class HR_Account
-    {
-        [BsonId]
-        public string Id { get; set; }
-
+    [BsonCollection("HR_Employee")]
+    public class HR_Account : MongoDocument
+    {      
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Tên không được để trống!")]

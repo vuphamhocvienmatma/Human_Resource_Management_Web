@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Human_Resource_Management_Model.MongoClass
 {
-    public interface IDocument
+    public interface IMongoDocument
     {
         [BsonId]
         [BsonRepresentation(BsonType.String)]

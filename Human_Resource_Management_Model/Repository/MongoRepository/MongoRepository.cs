@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace Human_Resource_Management_Model.Repository.MongoRepository
 {
     public class MongoRepository<TDocument> : IMongoRepository<TDocument>
-    where TDocument : IDocument
+    where TDocument : IMongoDocument
     {
         private readonly IMongoCollection<TDocument> _collection;
 
