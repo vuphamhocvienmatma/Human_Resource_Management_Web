@@ -35,7 +35,6 @@ namespace Human_Resource_Management_Model.Repository.MongoRepository
         Task<MessageReport> DeleteByIdAsync(string id);
 
         Task<MessageReport> DeleteManyAsync(Expression<Func<TDocument, bool>> filterExpression);
-
-        Task<long> CountAsync(TDocument document);
+     
     }
 }

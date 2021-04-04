@@ -167,9 +167,6 @@ namespace Human_Resource_Management_Model.Repository.MongoRepository
             return result;         
         }
 
-        public async Task<long> CountAsync(TDocument document)
-        {
-            return await _collection.EstimatedDocumentCountAsync();
-        }
+       
     }
 }

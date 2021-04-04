@@ -19,6 +19,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.Presentation", "3.Present
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Human_Resource_Management_Libraly", "..\Human_Resource_Management_Libraly\Human_Resource_Management_Libraly.csproj", "{AF267ABD-10D6-44F2-B9B3-B7FA40086621}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.Libraly", "5.Libraly", "{8ECBBB79-A690-4472-9455-3E3A9FF5C857}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,6 +56,7 @@ Global
 		{2BDBCE75-A067-4C02-8D4B-A20C16077597} = {E95B47C4-D5C1-47C4-9C22-C364D8CF0C47}
 		{89E5B790-9036-4863-88EA-56C7A07A0FDF} = {E95B47C4-D5C1-47C4-9C22-C364D8CF0C47}
 		{ED92C7B4-980D-465F-82B9-F3226B4768A3} = {2E489C07-7450-4B49-ABB6-7D758A04638E}
+		{AF267ABD-10D6-44F2-B9B3-B7FA40086621} = {8ECBBB79-A690-4472-9455-3E3A9FF5C857}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1D811991-382A-4CDA-B504-94D47E5AEA45}

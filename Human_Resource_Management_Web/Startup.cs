@@ -2,9 +2,9 @@ using Autofac;
 using Human_Resource_Management_Data.Repository;
 using Human_Resource_Management_Model.MongoClass;
 using Human_Resource_Management_Model.Repository.MongoRepository;
-
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -42,7 +42,10 @@ namespace Human_Resource_Management_Web
                 options.MaximumBodySize = 1024;
                 options.UseCaseSensitivePaths = true;
             });
-          
+            
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             services.AddControllersWithViews();
 
             services.AddControllers().AddNewtonsoftJson(options =>
@@ -56,6 +59,8 @@ namespace Human_Resource_Management_Web
             services.AddRazorPages();
 
             services.AddMvcCore().AddRazorViewEngine();
+
+            services.AddSignalR();
         }
         public void ConfigureContainer(ContainerBuilder builder)
         {
