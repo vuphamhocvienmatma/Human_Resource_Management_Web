@@ -2,6 +2,7 @@ using Autofac;
 using Human_Resource_Management_Data.Repository;
 using Human_Resource_Management_Model.MongoClass;
 using Human_Resource_Management_Model.Repository.MongoRepository;
+using Human_Resource_Management_Service.HR.Implementations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -64,6 +65,10 @@ namespace Human_Resource_Management_Web
             builder.RegisterAssemblyTypes(typeof(HR_AccountRepository).Assembly)
                     .Where(t => t.Name.EndsWith("Repository"))
                     .AsImplementedInterfaces().InstancePerLifetimeScope();
+
+            builder.RegisterAssemblyTypes(typeof(HR_AccountService).Assembly)
+                 .Where(t => t.Name.EndsWith("Service") && t.Namespace.Contains("HR"))
+                 .AsImplementedInterfaces().InstancePerLifetimeScope();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -101,6 +106,10 @@ namespace Human_Resource_Management_Web
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                    name: "HRM",
+                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

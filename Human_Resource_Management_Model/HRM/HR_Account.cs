@@ -50,4 +50,17 @@ namespace Human_Resource_Management_Model.HRM
 
         public string AvatarImg { get; set; }
     }
+
+    public class AuthModel
+    {
+        [Required(ErrorMessage = "Nhập tài khoản")]
+        public string Username { get; set; } = "";
+
+        [Required(ErrorMessage = "Nhập mật khẩu")]
+        public string Password { get; set; } = "";
+
+        public bool isRemember { get; set; } = true;
+    }
+
+
 }

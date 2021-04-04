@@ -19,6 +19,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Human_Resource_Management_Data\Human_Resource_Management_Data.csproj" />
     <ProjectReference Include="..\Human_Resource_Management_Model\Human_Resource_Management_Model.csproj" />
+    <ProjectReference Include="..\Human_Resource_Management_Service\Human_Resource_Management_Service.csproj" />
   </ItemGroup>
 
 </Project>

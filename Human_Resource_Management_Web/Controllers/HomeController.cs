@@ -16,11 +16,7 @@ namespace Human_Resource_Management_Web.Controllers
         }
 
         public IActionResult Index()
-        {
-            string test = "a";
-            var aHash = HashHelper.HashPassword(test);
-            bool i = HashHelper.ValidatePassword(test, aHash);
-
+        {        
             return View();
         }
 

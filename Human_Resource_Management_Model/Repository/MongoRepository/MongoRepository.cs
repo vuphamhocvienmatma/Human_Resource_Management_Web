@@ -37,6 +37,7 @@ namespace Human_Resource_Management_Model.Repository.MongoRepository
         public virtual IEnumerable<TDocument> FilterBy(
             Expression<Func<TDocument, bool>> filterExpression)
         {
+            
             return _collection.Find(filterExpression).ToEnumerable();
         }
 
