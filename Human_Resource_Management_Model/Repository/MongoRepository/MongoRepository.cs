@@ -1,4 +1,5 @@
-﻿using Human_Resource_Management_Model.MongoClass;
+﻿using Human_Resource_Management_Libraly.BaseModel;
+using Human_Resource_Management_Model.MongoClass;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
@@ -16,7 +17,7 @@ namespace Human_Resource_Management_Model.Repository.MongoRepository
         private readonly IMongoCollection<TDocument> _collection;
 
         public MongoRepository()
-        {          
+        {
             IMongoDatabase database = new MongoClient("mongodb://adminHR:anhlavu123@localhost:27017/?serverSelectionTimeoutMS=5000&connectTimeoutMS=10000&authSource=HumanResources&authMechanism=SCRAM-SHA-256&3t.uriVersion=3&3t.connection.name=adminHR&3t.alwaysShowAuthDB=true&3t.alwaysShowDBFromUserRole=true").GetDatabase("HumanResources");
             _collection = database.GetCollection<TDocument>(GetCollectionName(typeof(TDocument)));
         }
@@ -31,13 +32,13 @@ namespace Human_Resource_Management_Model.Repository.MongoRepository
 
         public virtual IQueryable<TDocument> AsQueryable()
         {
-            return _collection.AsQueryable();
+            return  _collection.AsQueryable();
         }
-        
-        public virtual IEnumerable<TDocument> FilterBy(
+
+        public virtual  IEnumerable<TDocument> FilterBy(
             Expression<Func<TDocument, bool>> filterExpression)
         {
-            return _collection.Find(filterExpression).ToEnumerable();
+            return  _collection.Find(filterExpression).ToEnumerable();
         }
 
         public virtual IEnumerable<TProjected> FilterBy<TProjected>(
@@ -46,27 +47,15 @@ namespace Human_Resource_Management_Model.Repository.MongoRepository
         {
             return _collection.Find(filterExpression).Project(projectionExpression).ToEnumerable();
         }
-
-        public virtual TDocument FindOne(Expression<Func<TDocument, bool>> filterExpression)
+    
+        public virtual async Task<TDocument> FindOneAsync(Expression<Func<TDocument, bool>> filterExpression)
         {
-            return _collection.Find(filterExpression).FirstOrDefault();
+            return await Task.Run(() => _collection.Find(filterExpression).FirstOrDefaultAsync());
         }
 
-        public virtual Task<TDocument> FindOneAsync(Expression<Func<TDocument, bool>> filterExpression)
+        public virtual async Task<TDocument> FindByIdAsync(string id)
         {
-            return Task.Run(() => _collection.Find(filterExpression).FirstOrDefaultAsync());
-        }
-
-        public virtual TDocument FindById(string id)
-        {
-            var objectId = new ObjectId(id);
-            var filter = Builders<TDocument>.Filter.Eq(doc => doc.Id, objectId);
-            return _collection.Find(filter).SingleOrDefault();
-        }
-
-        public virtual Task<TDocument> FindByIdAsync(string id)
-        {
-            return Task.Run(() =>
+            return await Task.Run(() =>
             {
                 var objectId = new ObjectId(id);
                 var filter = Builders<TDocument>.Filter.Eq(doc => doc.Id, objectId);
@@ -74,75 +63,113 @@ namespace Human_Resource_Management_Model.Repository.MongoRepository
             });
         }
 
-
-        public virtual void InsertOne(TDocument document)
+        public virtual async Task<MessageReport> InsertOneAsync(TDocument document)
         {
-            _collection.InsertOne(document);
+            MessageReport result = new MessageReport(false, "Chưa được thực thi");
+
+            try
+            {
+                await _collection.InsertOneAsync(document);
+                result = new MessageReport(true, "Thêm mới thành công");
+            }
+            catch (Exception ex)
+            {
+                result = new MessageReport(false, string.Format("Message: {0} - Details: {1}", 
+                    ex.Message, ex.InnerException != null ? ex.InnerException.Message : ""));
+                
+            }
+            return result;
         }
 
-        public virtual Task InsertOneAsync(TDocument document)
+        public virtual async Task<MessageReport> InsertManyAsync(ICollection<TDocument> documents)
         {
-            return Task.Run(() => _collection.InsertOneAsync(document));
+            MessageReport result = new MessageReport(false, "Chưa được thực thi");
+            try
+            {
+                await _collection.InsertManyAsync(documents);
+                result = new MessageReport(true, "Thêm mới thành công");
+            }
+            catch (Exception ex)
+            {
+
+                result = new MessageReport(false, string.Format("Message: {0} - Details: {1}",
+                   ex.Message, ex.InnerException != null ? ex.InnerException.Message : ""));
+            }
+            return result;
         }
 
-        public void InsertMany(ICollection<TDocument> documents)
+        public virtual async Task<MessageReport> ReplaceOneAsync(TDocument document)
         {
-            _collection.InsertMany(documents);
+            MessageReport result = new MessageReport(false, "Chưa được thực thi");
+            try
+            {
+                var filter = Builders<TDocument>.Filter.Eq(doc => doc.Id, document.Id);
+                await _collection.FindOneAndReplaceAsync(filter, document);
+                result = new MessageReport(true, "Thay bản ghi thành công");
+            }
+            catch (Exception ex)
+            {
+
+                result = new MessageReport(false, string.Format("Message: {0} - Details: {1}",
+                   ex.Message, ex.InnerException != null ? ex.InnerException.Message : ""));
+            }
+            return result;
         }
 
-
-        public virtual async Task InsertManyAsync(ICollection<TDocument> documents)
+        public async Task<MessageReport> DeleteOneAsync(Expression<Func<TDocument, bool>> filterExpression)
         {
-            await _collection.InsertManyAsync(documents);
+            MessageReport result = new MessageReport(false, "Chưa được thực thi");
+            try
+            {
+                await _collection.FindOneAndDeleteAsync(filterExpression);
+                result = new MessageReport(true, "Xóa bản ghi thành công");
+            }
+            catch (Exception ex)
+            {
+
+                result = new MessageReport(false, string.Format("Message: {0} - Details: {1}",
+                  ex.Message, ex.InnerException != null ? ex.InnerException.Message : ""));
+            }
+            return result;
         }
 
-        public void ReplaceOne(TDocument document)
+        public async Task<MessageReport> DeleteByIdAsync(string id)
         {
-            var filter = Builders<TDocument>.Filter.Eq(doc => doc.Id, document.Id);
-            _collection.FindOneAndReplace(filter, document);
-        }
-
-        public virtual async Task ReplaceOneAsync(TDocument document)
-        {
-            var filter = Builders<TDocument>.Filter.Eq(doc => doc.Id, document.Id);
-            await _collection.FindOneAndReplaceAsync(filter, document);
-        }
-
-        public void DeleteOne(Expression<Func<TDocument, bool>> filterExpression)
-        {
-            _collection.FindOneAndDelete(filterExpression);
-        }
-
-        public Task DeleteOneAsync(Expression<Func<TDocument, bool>> filterExpression)
-        {
-            return Task.Run(() => _collection.FindOneAndDeleteAsync(filterExpression));
-        }
-
-        public void DeleteById(string id)
-        {
-            var objectId = new ObjectId(id);
-            var filter = Builders<TDocument>.Filter.Eq(doc => doc.Id, objectId);
-            _collection.FindOneAndDelete(filter);
-        }
-
-        public Task DeleteByIdAsync(string id)
-        {
-            return Task.Run(() =>
+            MessageReport result = new MessageReport(false, "Chưa được thực thi");
+            try
             {
                 var objectId = new ObjectId(id);
                 var filter = Builders<TDocument>.Filter.Eq(doc => doc.Id, objectId);
-                _collection.FindOneAndDeleteAsync(filter);
-            });
+                await _collection.FindOneAndDeleteAsync(filter);
+                result = new MessageReport(true, "Xóa bản ghi thành công");
+            }
+            catch (Exception ex)
+            {
+                result = new MessageReport(false, string.Format("Message: {0} - Details: {1}",
+                  ex.Message, ex.InnerException != null ? ex.InnerException.Message : ""));
+            }
+            return result;
         }
 
-        public void DeleteMany(Expression<Func<TDocument, bool>> filterExpression)
+        public async Task<MessageReport> DeleteManyAsync(Expression<Func<TDocument, bool>> filterExpression)
         {
-            _collection.DeleteMany(filterExpression);
+            MessageReport result = new MessageReport(false, "Chưa được thực thi");
+            try
+            {
+                 await _collection.DeleteManyAsync(filterExpression);
+                result = new MessageReport(true, "Xóa các bản ghi thành công");
+            }
+            catch (Exception ex)
+            {
+                result = new MessageReport(false, string.Format("Message: {0} - Details: {1}",
+                  ex.Message, ex.InnerException != null ? ex.InnerException.Message : ""));
+            }
+            return result;         
         }
 
-        public Task DeleteManyAsync(Expression<Func<TDocument, bool>> filterExpression)
+        public async Task<long> CountAsync(TDocument document)
         {
-            return Task.Run(() => _collection.DeleteManyAsync(filterExpression));
+            return await _collection.EstimatedDocumentCountAsync();
         }
     }
 }

@@ -7,7 +7,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Human_Resource_Management_W
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Human_Resource_Management_Model", "..\Human_Resource_Management_Model\Human_Resource_Management_Model.csproj", "{2BDBCE75-A067-4C02-8D4B-A20C16077597}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Human_Resource_Management_Data", "..\Human_Resource_Management_Data\Human_Resource_Management_Data.csproj", "{89E5B790-9036-4863-88EA-56C7A07A0FDF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Human_Resource_Management_Data", "..\Human_Resource_Management_Data\Human_Resource_Management_Data.csproj", "{89E5B790-9036-4863-88EA-56C7A07A0FDF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Human_Resource_Management_Service", "..\Human_Resource_Management_Service\Human_Resource_Management_Service.csproj", "{ED92C7B4-980D-465F-82B9-F3226B4768A3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.Repository", "1.Repository", "{E95B47C4-D5C1-47C4-9C22-C364D8CF0C47}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.Service", "2.Service", "{2E489C07-7450-4B49-ABB6-7D758A04638E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.Presentation", "3.Presentation", "{571E6916-E67B-48A5-BB4C-C22209204792}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Human_Resource_Management_Libraly", "..\Human_Resource_Management_Libraly\Human_Resource_Management_Libraly.csproj", "{AF267ABD-10D6-44F2-B9B3-B7FA40086621}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,9 +37,23 @@ Global
 		{89E5B790-9036-4863-88EA-56C7A07A0FDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89E5B790-9036-4863-88EA-56C7A07A0FDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89E5B790-9036-4863-88EA-56C7A07A0FDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED92C7B4-980D-465F-82B9-F3226B4768A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED92C7B4-980D-465F-82B9-F3226B4768A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED92C7B4-980D-465F-82B9-F3226B4768A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED92C7B4-980D-465F-82B9-F3226B4768A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF267ABD-10D6-44F2-B9B3-B7FA40086621}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF267ABD-10D6-44F2-B9B3-B7FA40086621}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF267ABD-10D6-44F2-B9B3-B7FA40086621}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF267ABD-10D6-44F2-B9B3-B7FA40086621}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C630BE05-3C75-4ED0-95AC-0BCC922E1953} = {571E6916-E67B-48A5-BB4C-C22209204792}
+		{2BDBCE75-A067-4C02-8D4B-A20C16077597} = {E95B47C4-D5C1-47C4-9C22-C364D8CF0C47}
+		{89E5B790-9036-4863-88EA-56C7A07A0FDF} = {E95B47C4-D5C1-47C4-9C22-C364D8CF0C47}
+		{ED92C7B4-980D-465F-82B9-F3226B4768A3} = {2E489C07-7450-4B49-ABB6-7D758A04638E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1D811991-382A-4CDA-B504-94D47E5AEA45}

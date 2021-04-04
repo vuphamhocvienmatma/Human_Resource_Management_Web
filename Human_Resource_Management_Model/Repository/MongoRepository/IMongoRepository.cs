@@ -1,4 +1,5 @@
-﻿using Human_Resource_Management_Model.MongoClass;
+﻿using Human_Resource_Management_Libraly.BaseModel;
+using Human_Resource_Management_Model.MongoClass;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,37 +19,23 @@ namespace Human_Resource_Management_Model.Repository.MongoRepository
         IEnumerable<TProjected> FilterBy<TProjected>(
             Expression<Func<TDocument, bool>> filterExpression,
             Expression<Func<TDocument, TProjected>> projectionExpression);
-
-        TDocument FindOne(Expression<Func<TDocument, bool>> filterExpression);
-
+     
         Task<TDocument> FindOneAsync(Expression<Func<TDocument, bool>> filterExpression);
-
-        TDocument FindById(string id);
-
+      
         Task<TDocument> FindByIdAsync(string id);
 
-        void InsertOne(TDocument document);
+        Task<MessageReport> InsertOneAsync(TDocument document);
 
-        Task InsertOneAsync(TDocument document);
+        Task<MessageReport> InsertManyAsync(ICollection<TDocument> documents);
 
-        void InsertMany(ICollection<TDocument> documents);
+        Task<MessageReport> ReplaceOneAsync(TDocument document);
 
-        Task InsertManyAsync(ICollection<TDocument> documents);
+        Task<MessageReport> DeleteOneAsync(Expression<Func<TDocument, bool>> filterExpression);
 
-        void ReplaceOne(TDocument document);
+        Task<MessageReport> DeleteByIdAsync(string id);
 
-        Task ReplaceOneAsync(TDocument document);
+        Task<MessageReport> DeleteManyAsync(Expression<Func<TDocument, bool>> filterExpression);
 
-        void DeleteOne(Expression<Func<TDocument, bool>> filterExpression);
-
-        Task DeleteOneAsync(Expression<Func<TDocument, bool>> filterExpression);
-
-        void DeleteById(string id);
-
-        Task DeleteByIdAsync(string id);
-
-        void DeleteMany(Expression<Func<TDocument, bool>> filterExpression);
-
-        Task DeleteManyAsync(Expression<Func<TDocument, bool>> filterExpression);
+        Task<long> CountAsync(TDocument document);
     }
 }
