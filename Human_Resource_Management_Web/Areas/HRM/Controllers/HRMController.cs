@@ -29,7 +29,7 @@ namespace Human_Resource_Management_Web.Areas.HRM.Controllers
         {          
             var list = _HR_AccountService.GetAll().Result;
             var mappedList = _mapper.Map<IEnumerable<HR_Account>, IEnumerable<HR_AccountViewModel>>(list.ToList());
-
+            
             return View(mappedList);
         }
         
