@@ -51,6 +51,22 @@ namespace Human_Resource_Management_Model.HRM
         public string AvatarImg { get; set; }
     }
 
+
+    public class HR_AccountViewModel
+    {
+        public string Name { get; set; }
+
+        public bool Gender { get; set; }
+
+        public string Mobile1 { get; set; }
+
+        public DateTime BirthDay { get; set; }
+
+        public DateTime DateCreated { get; set; }
+
+        public string AvatarImg { get; set; }
+    }
+  
     public class AuthModel
     {
         [Required(ErrorMessage = "Nhập tài khoản")]
@@ -62,5 +78,5 @@ namespace Human_Resource_Management_Model.HRM
         public bool isRemember { get; set; } = true;
     }
 
-
+    
 }

@@ -1,5 +1,6 @@
 using Autofac;
 using Human_Resource_Management_Data.Repository;
+using Human_Resource_Management_Model.Mapping;
 using Human_Resource_Management_Model.MongoClass;
 using Human_Resource_Management_Model.Repository.MongoRepository;
 using Human_Resource_Management_Service.HR.Implementations;
@@ -32,10 +33,13 @@ namespace Human_Resource_Management_Web
         {
             services.Configure<MongoDbSettings>(Configuration.GetSection("MongoDbSettings"));
 
+            services.AddAutoMapper(typeof(Maps));
+
             services.AddSingleton<IMongoDbSettings>(serviceProvider =>
                 serviceProvider.GetRequiredService<IOptions<MongoDbSettings>>().Value);
 
             services.AddScoped(typeof(IMongoRepository<>), typeof(MongoRepository<>));
+
             services.AddResponseCaching(options =>
             {
                 options.MaximumBodySize = 1024;
