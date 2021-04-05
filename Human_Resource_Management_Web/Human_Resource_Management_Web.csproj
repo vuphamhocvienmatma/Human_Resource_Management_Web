@@ -22,4 +22,8 @@
     <ProjectReference Include="..\Human_Resource_Management_Service\Human_Resource_Management_Service.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\HRM\Views\HRM\" />
+  </ItemGroup>
+
 </Project>
