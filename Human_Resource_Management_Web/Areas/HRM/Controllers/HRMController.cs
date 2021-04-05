@@ -15,6 +15,12 @@ namespace Human_Resource_Management_Web.Areas.HRM.Controllers
         {
             _HR_AccountService = HR_AccountService;
         }
+
+        public IActionResult Demo()
+        {         
+            return View();
+        }
+
         public IActionResult Index()
         {
             var list = _HR_AccountService.GetAll().Result;
