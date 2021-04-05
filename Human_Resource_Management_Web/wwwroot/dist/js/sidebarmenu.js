@@ -63,5 +63,4 @@ $(function() {
             scrollTop: $("#sidebarnav .sidebar-item.selected").offset().top -250
         }, 500);
     }
-    
 });

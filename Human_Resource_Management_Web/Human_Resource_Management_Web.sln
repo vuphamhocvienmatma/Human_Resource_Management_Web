@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Human_Resource_Management_M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Human_Resource_Management_Data", "..\Human_Resource_Management_Data\Human_Resource_Management_Data.csproj", "{89E5B790-9036-4863-88EA-56C7A07A0FDF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Human_Resource_Management_Service", "..\Human_Resource_Management_Service\Human_Resource_Management_Service.csproj", "{ED92C7B4-980D-465F-82B9-F3226B4768A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Human_Resource_Management_Service", "..\Human_Resource_Management_Service\Human_Resource_Management_Service.csproj", "{ED92C7B4-980D-465F-82B9-F3226B4768A3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.Repository", "1.Repository", "{E95B47C4-D5C1-47C4-9C22-C364D8CF0C47}"
 EndProject
@@ -17,9 +17,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.Service", "2.Service", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.Presentation", "3.Presentation", "{571E6916-E67B-48A5-BB4C-C22209204792}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Human_Resource_Management_Libraly", "..\Human_Resource_Management_Libraly\Human_Resource_Management_Libraly.csproj", "{AF267ABD-10D6-44F2-B9B3-B7FA40086621}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Human_Resource_Management_Libraly", "..\Human_Resource_Management_Libraly\Human_Resource_Management_Libraly.csproj", "{AF267ABD-10D6-44F2-B9B3-B7FA40086621}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.Libraly", "5.Libraly", "{8ECBBB79-A690-4472-9455-3E3A9FF5C857}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.Libraly", "4.Libraly", "{8ECBBB79-A690-4472-9455-3E3A9FF5C857}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
