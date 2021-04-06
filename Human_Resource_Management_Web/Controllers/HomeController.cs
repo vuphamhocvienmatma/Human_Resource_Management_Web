@@ -30,5 +30,10 @@ namespace Human_Resource_Management_Web.Controllers
         {
             return View();
         }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
     }
 }

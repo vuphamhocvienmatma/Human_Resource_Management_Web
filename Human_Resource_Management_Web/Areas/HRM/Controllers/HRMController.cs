@@ -1,23 +1,29 @@
 ﻿using AutoMapper;
+using Human_Resource_Management_Libraly.Cryptography;
+using Human_Resource_Management_Libraly.Helper;
 using Human_Resource_Management_Model.HRM;
 using Human_Resource_Management_Service.HR.Interfaces;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Human_Resource_Management_Web.Areas.HRM.Controllers
 {
     [Area("HRM")]
-    public class HRMController : Controller      
+    public class HRMController : Controller
     {
+        private readonly IWebHostEnvironment hostingEnvironment;
         private IHR_AccountService _HR_AccountService;
         private readonly IMapper _mapper;
-        public HRMController(IHR_AccountService HR_AccountService, IMapper mapper)
+        public HRMController(IHR_AccountService HR_AccountService, IMapper mapper, IWebHostEnvironment environment)
         {
             _HR_AccountService = HR_AccountService;
             _mapper = mapper;
+            hostingEnvironment = environment;
         }
 
         public IActionResult Demo()
@@ -43,6 +49,18 @@ namespace Human_Resource_Management_Web.Areas.HRM.Controllers
         [HttpPost]
         public IActionResult Create(HR_Account model)
         {
+           model.Id = Guid.NewGuid();
+           model.Name = model.LastName + model.FirstName;
+           model.PasswordSalt = Guid.NewGuid().ToString();
+           model.Password = HashHelper.HashPassword(model.Password);
+            if(model.AvatarImg != null)
+            {
+                string uniqueFileName = AvartarHelper.GetUniqueFileName(model.AvatarImg.FileName);
+                string uploads = Path.Combine(hostingEnvironment.WebRootPath, "uploads");
+                AvartarHelper.CreateDirectory(uploads);
+                string filePath = Path.Combine(uploads, uniqueFileName);
+                model.AvatarImg.CopyTo(new FileStream(filePath, FileMode.Create));
+            }    
            var re = _HR_AccountService.Create(model,this.HttpContext);
            return View();
         }

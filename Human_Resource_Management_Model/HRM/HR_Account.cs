@@ -1,4 +1,5 @@
 ﻿using Human_Resource_Management_Model.MongoClass;
+using Microsoft.AspNetCore.Http;
 using MongoDB.Bson;
 using System;
 using System.ComponentModel.DataAnnotations;
@@ -49,7 +50,7 @@ namespace Human_Resource_Management_Model.HRM
 
         public string DutyId { get; set; } //Nghiệp vụ, chức vụ
 
-        public string AvatarImg { get; set; }
+        public IFormFile AvatarImg { get; set; }
     }
 
 

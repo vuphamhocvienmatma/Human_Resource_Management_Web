@@ -14,74 +14,11 @@
                     </form>
                 </div>
                 <div class="col-md-8 text-right d-flex justify-content-md-end justify-content-center mt-3 mt-md-0">
-                    <a href="javascript:void(0)" id="btn-add-contact" class="btn btn-info"><i class="mdi mdi-account-multiple-plus font-16 mr-1"></i> Add Contact</a>
+                    <a asp-action="Create" id="btn-add-contact" class="btn btn-info"><i class="mdi mdi-account-multiple-plus font-16 mr-1"></i> Add Contact</a>
                 </div>
             </div>
-        </div>
-        <!-- Modal -->
-        <div class="modal fade" id="addContactModal" tabindex="-1" role="dialog" aria-labelledby="addContactModalTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Contact</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="add-contact-box">
-                            <div class="add-contact-content">
-                                <form id="addContactModalTitle">
-                                    <div class="row mb-3">
-                                        <div class="col-md-6">
-                                            <div class="contact-name">
-                                                <input type="text" id="c-name" class="form-control" placeholder="Name">
-                                                <span class="validation-text"></span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="contact-email">
-                                                <input type="text" id="c-email" class="form-control" placeholder="Email">
-                                                <span class="validation-text"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-md-6">
-                                            <div class="contact-occupation">
-                                                <input type="text" id="c-occupation" class="form-control" placeholder="Occupation">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <div class="contact-phone">
-                                                <input type="text" id="c-phone" class="form-control" placeholder="Phone">
-                                                <span class="validation-text"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-md-12">
-                                            <div class="contact-location">
-                                                <input type="text" id="c-location" class="form-control" placeholder="Location">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button id="btn-add" class="btn btn-success">Add</button>
-                        <button id="btn-edit" class="btn btn-success">Save</button>
-                        <button class="btn btn-danger" data-dismiss="modal"> Discard</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </div>      
+        <!-- Data Table -->
         <div class="card card-body">
             <div class="table-responsive">
                 <table class="table table-striped search-table v-middle">
@@ -104,57 +41,57 @@
                         @foreach (var item in Model)
                         {
                             <!-- row -->
-                        <tr class="search-items">
-                            <td>
-                                <div class="n-chk align-self-center text-center">
-                                    <div class="checkbox checkbox-info">
-                                        <input type="checkbox" class="material-inputs contact-chkbox" id="checkbox1">
-                                        <label class="" for="checkbox1"></label>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <span class="usr-location" data-location="Boston, USA">@Html.DisplayFor(modelItem => item.Id)</span>
-                            </td>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <img src="~/Avatar/DefaultAvatar.jpg" alt="avatar" class="rounded-circle" width="35">
-                                    <div class="ml-2">
-                                        <div class="user-meta-info">
-                                            <h5 class="user-name mb-0" data-name="Emma Adams">@Html.DisplayFor(modelItem => item.Name)</h5>
-                                            <span class="user-work text-muted" data-occupation="Web Developer">@Html.DisplayFor(modelItem => item.DutyId)</span>
+                            <tr class="search-items">
+                                <td>
+                                    <div class="n-chk align-self-center text-center">
+                                        <div class="checkbox checkbox-info">
+                                            <input type="checkbox" class="material-inputs contact-chkbox" id="checkbox1">
+                                            <label class="" for="checkbox1"></label>
                                         </div>
                                     </div>
-                                </div>
-                            </td>
-                            <td>
-                                <span class="usr-email-addr" data-email="adams@mail.com">@Html.DisplayFor(modelItem => item.Email)</span>
-                            </td>
-                            @if (item.Gender == true)
-                            {
-                                <td>
-                                    <span class="usr-location" data-location="Boston, USA">Nam</span>
                                 </td>
-                            }
-                            @if (item.Gender == false)
-                            {
                                 <td>
-                                    <span class="usr-location" data-location="Boston, USA">Nữ</span>
+                                    <span class="usr-location" data-location="Boston, USA">@Html.DisplayFor(modelItem => item.Id)</span>
                                 </td>
-                            }
-                            <td>
-                                <span class="usr-ph-no" data-phone="+1 (070) 123-4567">@Html.DisplayFor(modelItem => item.Mobile1)</span>
-                            </td>
-                            <td>
-                                <span class="usr-ph-no" data-phone="+1 (070) 123-4567">@Html.DisplayFor(modelItem => item.BirthDay)</span>
-                            </td>
-                            <td class="text-center">
-                                <div class="action-btn">
-                                    <a href="javascript:void(0)" class="text-info edit"><i class="mdi mdi-account-edit font-20"></i></a>
-                                    <a href="javascript:void(0)" class="text-dark delete ml-2"><i class="mdi mdi-delete font-20"></i></a>
-                                </div>
-                            </td>
-                        </tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img src="~/Avatar/DefaultAvatar.jpg" alt="avatar" class="rounded-circle" width="35">
+                                        <div class="ml-2">
+                                            <div class="user-meta-info">
+                                                <h5 class="user-name mb-0" data-name="Emma Adams">@Html.DisplayFor(modelItem => item.Name)</h5>
+                                                <span class="user-work text-muted" data-occupation="Web Developer">@Html.DisplayFor(modelItem => item.DutyId)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="usr-email-addr" data-email="adams@mail.com">@Html.DisplayFor(modelItem => item.Email)</span>
+                                </td>
+                                @if (item.Gender == true)
+                                {
+                                    <td>
+                                        <span class="usr-location" data-location="Boston, USA">Nam</span>
+                                    </td>
+                                }
+                                @if (item.Gender == false)
+                                {
+                                    <td>
+                                        <span class="usr-location" data-location="Boston, USA">Nữ</span>
+                                    </td>
+                                }
+                                <td>
+                                    <span class="usr-ph-no" data-phone="+1 (070) 123-4567">@Html.DisplayFor(modelItem => item.Mobile1)</span>
+                                </td>
+                                <td>
+                                    <span class="usr-ph-no" data-phone="+1 (070) 123-4567">@Html.DisplayFor(modelItem => item.BirthDay)</span>
+                                </td>
+                                <td class="text-center">
+                                    <div class="action-btn">
+                                        <a href="javascript:void(0)" class="text-info edit"><i class="mdi mdi-account-edit font-20"></i></a>
+                                        <a href="javascript:void(0)" class="text-dark delete ml-2"><i class="mdi mdi-delete font-20"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
                             <!-- /.row -->
 
                         }
