@@ -57,9 +57,9 @@ namespace Human_Resource_Management_Libraly.BaseModel
 
         public bool IsAdvanceSearch { get; set; } //Có dùng bảng tìm kiếm nâng cao
 
-        //public List<SelectListModel_Form_Multi> SelectList_Multi { get; set; } //Danh sách các select tìm kiếm
+        public List<SelectListModel_Form_Multi> SelectList_Multi { get; set; } //Danh sách các select tìm kiếm
 
-        //public List<SelectListModel_Input> List_Input { get; set; } //Danh sách ô tìm kiếm dạng input
+        public List<SelectListModel_Input> List_Input { get; set; } //Danh sách ô tìm kiếm dạng input
 
         public string MoreSearch { get; set; } = ""; //Lưu lại dữ liệu search nâng cao
 
@@ -89,11 +89,11 @@ namespace Human_Resource_Management_Libraly.BaseModel
 
         public string ModalCopyUrl { get; set; } = ""; //Url để gọi render modal
 
-        //public List<SelectListModel_Slide> Slide_Input { get; set; }
+        public List<SelectListModel_Slide> Slide_Input { get; set; }
 
         public string AutoCompleteSearch { get; set; } = "";
 
-        //public List<SelectListModel_AutoComplete> AutoComplete_Input { get; set; }
+        public List<SelectListModel_AutoComplete> AutoComplete_Input { get; set; }
     }
 
     public class THeadModel
