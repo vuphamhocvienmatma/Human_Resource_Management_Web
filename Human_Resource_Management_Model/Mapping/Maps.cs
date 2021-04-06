@@ -13,6 +13,7 @@ namespace Human_Resource_Management_Model.Mapping
         public Maps()
         {
             CreateMap<HR_Account, HR_AccountViewModel>().ReverseMap();
+            CreateMap<HR_Account, HR_AccountEditModel>().ReverseMap();
         }
     }
 }

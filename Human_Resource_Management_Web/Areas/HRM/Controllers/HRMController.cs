@@ -47,22 +47,31 @@ namespace Human_Resource_Management_Web.Areas.HRM.Controllers
 
 
         [HttpPost]
-        public IActionResult Create(HR_Account model)
+        public IActionResult Create(HR_AccountEditModel model)
         {
            model.Id = Guid.NewGuid();
            model.Name = model.LastName + model.FirstName;
            model.PasswordSalt = Guid.NewGuid().ToString();
            model.Password = HashHelper.HashPassword(model.Password);
-            if(model.AvatarImg != null)
+
+            if(model.AvatarImage != null)
             {
-                string uniqueFileName = AvartarHelper.GetUniqueFileName(model.AvatarImg.FileName);
-                string uploads = Path.Combine(hostingEnvironment.WebRootPath, "uploads");
-                AvartarHelper.CreateDirectory(uploads);
-                string filePath = Path.Combine(uploads, uniqueFileName);
-                model.AvatarImg.CopyTo(new FileStream(filePath, FileMode.Create));
-            }    
-           var re = _HR_AccountService.Create(model,this.HttpContext);
+                var uniqueFileName = ImageHelper.GetUniqueFileName(model.AvatarImage.FileName);
+                var uploads = Path.Combine(hostingEnvironment.WebRootPath, "uploads");
+                ImageHelper.CheckExsitsDirectory(uploads);
+                var filePath = Path.Combine(uploads, uniqueFileName);
+               
+               
+                model.AvatarImage.CopyTo(new FileStream(filePath, FileMode.Create));
+                model.AvatarImagePath = filePath;
+            }
+            else
+                model.AvatarImagePath = "~/Avatar/DefaultAvatar.jpg";
+            var mappedModel = _mapper.Map<HR_AccountEditModel, HR_Account>(model);
+           var re = _HR_AccountService.Create(mappedModel, this.HttpContext);
            return View();
         }
+
+       
     }
 }

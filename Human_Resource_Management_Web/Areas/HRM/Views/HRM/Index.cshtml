@@ -28,7 +28,7 @@
                             <a href="javascript:void(0)" class="delete-multiple  text-danger"><i class="fas fa-trash font-20 font-medium"></i> Delete Row</a>
                         </div>
                     </th>
-                    <th class="text-dark font-weight-bold" @*style="display:none"*@> @Html.DisplayNameFor(model => model.Id)</th>
+                    <th class="text-dark font-weight-bold" style="display:none"> @Html.DisplayNameFor(model => model.Id)</th>
                     <th class="text-dark font-weight-bold"> @Html.DisplayNameFor(model => model.Name)</th>
                     <th class="text-dark font-weight-bold"> @Html.DisplayNameFor(model => model.Email)</th>
                     <th class="text-dark font-weight-bold">  @Html.DisplayNameFor(model => model.Gender)</th>
@@ -50,12 +50,12 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td>
+                                <td style="display:none">
                                     <span class="usr-location" data-location="Boston, USA">@Html.DisplayFor(modelItem => item.Id)</span>
                                 </td>
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        <img src="~/Avatar/DefaultAvatar.jpg" alt="avatar" class="rounded-circle" width="35">
+                                        <img src=@Html.DisplayFor(modelItem => item.AvatarImagePath) alt="avatar" class="rounded-circle" width="35">
                                         <div class="ml-2">
                                             <div class="user-meta-info">
                                                 <h5 class="user-name mb-0" data-name="Emma Adams">@Html.DisplayFor(modelItem => item.Name)</h5>

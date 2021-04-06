@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Human_Resource_Management_Libraly.Helper
 {
-    public static class AvartarHelper
+    public static class ImageHelper
     {
         public static string GetUniqueFileName(string fileName)
         {
@@ -18,7 +18,7 @@ namespace Human_Resource_Management_Libraly.Helper
                       + Path.GetExtension(fileName);
         }
 
-        public static void CreateDirectory(string uploadPath)
+        public static void CheckExsitsDirectory(string uploadPath)
         {
             if(!Directory.Exists(uploadPath))
             Directory.CreateDirectory(uploadPath);
