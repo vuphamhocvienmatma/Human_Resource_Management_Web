@@ -1,4 +1,5 @@
 ﻿using Human_Resource_Management_Model.MongoClass;
+using MongoDB.Bson;
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -54,17 +55,29 @@ namespace Human_Resource_Management_Model.HRM
 
     public class HR_AccountViewModel
     {
+        [Display(Name ="Mã cán bộ")]
+        public Guid Id { get; set; }
+
+        [Display(Name = "Họ và tên")]
         public string Name { get; set; }
 
+        [Display(Name = "Giới tính")]
         public bool Gender { get; set; }
 
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+
+        [Display(Name = "Số điện thoại")]
         public string Mobile1 { get; set; }
 
+        [Display(Name = "Ngày sinh nhật")]
         public DateTime BirthDay { get; set; }
-
-        public DateTime DateCreated { get; set; }
-
+     
+        [Display(Name = "Ảnh đại diện")]
         public string AvatarImg { get; set; }
+
+        [Display(Name = "Chức vụ")]
+        public string DutyId { get; set; } //Nghiệp vụ, chức vụ
     }
   
     public class AuthModel

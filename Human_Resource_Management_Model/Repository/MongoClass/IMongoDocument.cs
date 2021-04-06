@@ -8,8 +8,6 @@ namespace Human_Resource_Management_Model.MongoClass
     {
         [BsonId]
         [BsonRepresentation(BsonType.String)]
-        ObjectId Id { get; set; }
-
-        DateTime CreatedAt { get; }
+        public Guid Id { get; set; }      
     }
 }

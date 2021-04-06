@@ -57,7 +57,7 @@ namespace Human_Resource_Management_Model.Repository.MongoRepository
         {
             return await Task.Run(() =>
             {
-                var objectId = new ObjectId(id);
+                var objectId = new Guid(id);
                 var filter = Builders<TDocument>.Filter.Eq(doc => doc.Id, objectId);
                 return _collection.Find(filter).SingleOrDefaultAsync();
             });
@@ -134,7 +134,7 @@ namespace Human_Resource_Management_Model.Repository.MongoRepository
             MessageReport result = new MessageReport(false, "Chưa được thực thi");
             try
             {
-                var objectId = new ObjectId(id);
+                var objectId = new Guid(id);
                 var filter = Builders<TDocument>.Filter.Eq(doc => doc.Id, objectId);
                 await _collection.FindOneAndDeleteAsync(filter);
                 result = new MessageReport(true, "Xóa bản ghi thành công");
